@@ -1,0 +1,37 @@
+-- Table to store information about students
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    FirstName NVARCHAR(50) NOT NULL,
+    LastName NVARCHAR(50) NOT NULL,
+    DateOfBirth DATE,
+    Gender NVARCHAR(10),
+    Email NVARCHAR(100),
+    PhoneNumber NVARCHAR(20),
+    Address NVARCHAR(255)
+);
+
+-- Table to store information about courses
+CREATE TABLE Courses (
+    CourseID INT PRIMARY KEY,
+    CourseName NVARCHAR(100) NOT NULL,
+    Credits INT
+);
+
+-- Table to store student enrollment in courses
+CREATE TABLE StudentCourses (
+    EnrollmentID INT PRIMARY KEY,
+    StudentID INT,
+    CourseID INT,
+    EnrollmentDate DATE,
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
+);
+
+-- Table to store additional information about student registrations
+CREATE TABLE StudentRegistration (
+    RegistrationID INT PRIMARY KEY,
+    StudentID INT,
+    RegistrationDate DATE,
+    Status NVARCHAR(20),
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID)
+);
